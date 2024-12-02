@@ -5,6 +5,7 @@
   "homepage_url": "https://github.com/mattermost/mattermost-plugin-starter-template",
   "support_url": "https://github.com/mattermost/mattermost-plugin-starter-template/issues",
   "icon_path": "assets/starter-template-icon.svg",
+  "version": "0.10.4",
   "min_server_version": "6.2.1",
   "server": {
     "executables": {
@@ -30,34 +31,34 @@
         "default": ""
       },
       {
-        "key": "RabbitMQ_Host",
+        "key": "RabbitmqHost",
         "display_name": "RabbitMQ Host",
         "type": "text",
         "default": false
       },
       {
-        "key": "RabbitMQ_Port",
+        "key": "RabbitmqPort",
         "display_name": "RabbitMQ Port",
         "type": "text",
         "default": false
       },
       {
-        "key": "RabbitMQ_User",
+        "key": "RabbitmqUser",
         "display_name": "RabbitMQ User",
         "type": "text",
         "default": false
       },
       {
-        "key": "RabbitMQ_Password",
+        "key": "RabbitmqPassword",
         "display_name": "RabbitMQ Password",
         "type": "text",
         "secret": true
       },
       {
-        "key": "RabbitMQ_Vhost",
+        "key": "RabbitmqVhost",
         "display_name": "RabbitMQ Vhost",
         "type": "text",
-        "default": false
+        "default": "/"
       }
     ]
   }
