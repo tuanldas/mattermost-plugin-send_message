@@ -37,6 +37,8 @@ type configuration struct {
 	RabbitmqUser     string
 	RabbitmqPassword string
 	RabbitmqVhost    string
+	AppHost          string
+	BotToken         string
 	channels         []ChannelAction
 }
 
