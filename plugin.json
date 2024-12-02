@@ -24,18 +24,9 @@
     "settings": [
       {
         "key": "ChannelID",
-        "display_name": "Channel ID",
+        "display_name": "Channel ID New Lead",
         "type": "text",
-        "help_text": "ID của channel",
-        "placeholder": "ID của channel",
-        "default": ""
-      },
-      {
-        "key": "Message",
-        "display_name": "Message",
-        "type": "text",
-        "help_text": "Nội dung thông báo",
-        "placeholder": "Nội dung thông báo",
+        "help_text": "Cú pháp: [{action: 'new_lead', channel_id: 'channel_id'}]",
         "default": ""
       },
       {
