@@ -21,6 +21,53 @@
   "settings_schema": {
     "header": "",
     "footer": "",
-    "settings": []
+    "settings": [
+      {
+        "key": "ChannelID",
+        "display_name": "Channel ID",
+        "type": "text",
+        "help_text": "ID của channel",
+        "placeholder": "ID của channel",
+        "default": ""
+      },
+      {
+        "key": "Message",
+        "display_name": "Message",
+        "type": "text",
+        "help_text": "Nội dung thông báo",
+        "placeholder": "Nội dung thông báo",
+        "default": ""
+      },
+      {
+        "key": "RabbitMQ_Host",
+        "display_name": "RabbitMQ Host",
+        "type": "text",
+        "default": false
+      },
+      {
+        "key": "RabbitMQ_Port",
+        "display_name": "RabbitMQ Port",
+        "type": "text",
+        "default": false
+      },
+      {
+        "key": "RabbitMQ_User",
+        "display_name": "RabbitMQ User",
+        "type": "text",
+        "default": false
+      },
+      {
+        "key": "RabbitMQ_Password",
+        "display_name": "RabbitMQ Password",
+        "type": "text",
+        "secret": true
+      },
+      {
+        "key": "RabbitMQ_Vhost",
+        "display_name": "RabbitMQ Vhost",
+        "type": "text",
+        "default": false
+      }
+    ]
   }
 }
