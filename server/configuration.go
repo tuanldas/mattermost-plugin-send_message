@@ -18,7 +18,7 @@ import (
 // If you add non-reference types to your configuration struct, be sure to rewrite Clone as a deep
 // copy appropriate for your types.
 type configuration struct {
-	ChannelID        string
+	ChannelNewLead   string
 	RabbitmqHost     string
 	RabbitmqPort     string
 	RabbitmqUser     string
