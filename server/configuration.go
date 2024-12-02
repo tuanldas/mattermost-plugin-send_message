@@ -17,6 +17,12 @@ import (
 //
 // If you add non-reference types to your configuration struct, be sure to rewrite Clone as a deep
 // copy appropriate for your types.
+
+type LeadAction struct {
+	Action    string `json:"action"`
+	ChannelID string `json:"channel_id"`
+}
+
 type configuration struct {
 	ChannelNewLead   string
 	RabbitmqHost     string
@@ -24,6 +30,7 @@ type configuration struct {
 	RabbitmqUser     string
 	RabbitmqPassword string
 	RabbitmqVhost    string
+	channels         []LeadAction
 }
 
 // Clone shallow copies the configuration. Your implementation may require a deep copy if
