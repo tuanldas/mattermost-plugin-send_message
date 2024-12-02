@@ -2,6 +2,8 @@ package main
 
 import (
 	"log"
+
+	amqp "github.com/rabbitmq/amqp091-go"
 )
 
 func (p *Plugin) OnActivate() error {
@@ -16,6 +18,12 @@ func (p *Plugin) OnDeactivate() error {
 	return nil
 }
 
-func processMessage(body []byte) {
-	log.Printf("Received message: %s", string(body))
+func processMessage(d amqp.Delivery) {
+	log.Printf("Received a message: %s", d.Body)
+	// Process the message here
+
+	// Acknowledge the message
+	if err := d.Ack(false); err != nil {
+		log.Printf("Failed to acknowledge message: %s", err)
+	}
 }

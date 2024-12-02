@@ -27,7 +27,7 @@ func (p *Plugin) connectRabbitMQ() {
 	failOnError(err, "Failed to open a channel")
 }
 
-func (p *Plugin) consumeMessages(queueName string, callback func([]byte)) {
+func (p *Plugin) consumeMessages(queueName string, handler func(amqp.Delivery)) {
 	q, err := ch.QueueDeclare(
 		queueName, // name
 		false,     // durable
@@ -56,7 +56,7 @@ func (p *Plugin) consumeMessages(queueName string, callback func([]byte)) {
 
 	go func() {
 		for d := range msgs {
-			callback(d.Body)
+			handler(d)
 		}
 	}()
 	log.Printf(" [*] Waiting for messages. To exit press CTRL+C")
