@@ -1,6 +1,8 @@
 package main
 
 import (
+	"encoding/json"
+	"log"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -18,7 +20,12 @@ import (
 // If you add non-reference types to your configuration struct, be sure to rewrite Clone as a deep
 // copy appropriate for your types.
 
-type LeadAction struct {
+type ChannelAction struct {
+	Action    string `json:"action"`
+	ChannelID string `json:"channel_id"`
+}
+
+type Lead struct {
 	Action    string `json:"action"`
 	ChannelID string `json:"channel_id"`
 }
@@ -30,7 +37,7 @@ type configuration struct {
 	RabbitmqUser     string
 	RabbitmqPassword string
 	RabbitmqVhost    string
-	channels         []LeadAction
+	channels         []ChannelAction
 }
 
 // Clone shallow copies the configuration. Your implementation may require a deep copy if
@@ -89,6 +96,31 @@ func (p *Plugin) OnConfigurationChange() error {
 	if err := p.API.LoadPluginConfiguration(configuration); err != nil {
 		return errors.Wrap(err, "failed to load plugin configuration")
 	}
+	var channelIDs = configuration.ChannelNewLead
+	var leads []Lead
+	var channelActions []ChannelAction
+
+	// Giải mã JSON vào mảng leads
+	if err := json.Unmarshal([]byte(channelIDs), &leads); err != nil {
+		log.Fatalf("Error unmarshaling JSON: %s", err)
+	}
+	teams, _ := p.API.GetTeams()
+	for _, lead := range leads {
+		log.Printf("Lead: %s", lead.Action)
+		for _, team := range teams {
+			log.Printf("Team: %s", team.Name)
+			channel, err := p.API.GetChannelByNameForTeamName(team.Name, lead.ChannelID, false)
+			if err != nil {
+				break
+			}
+			log.Printf("Channel: %s", channel.Name)
+			channelActions = append(channelActions, ChannelAction{
+				Action:    lead.Action,
+				ChannelID: channel.Id,
+			})
+		}
+	}
+	configuration.channels = channelActions
 
 	p.setConfiguration(configuration)
 
