@@ -31,15 +31,16 @@ type Lead struct {
 }
 
 type configuration struct {
-	ChannelNewLead   string
-	RabbitmqHost     string
-	RabbitmqPort     string
-	RabbitmqUser     string
-	RabbitmqPassword string
-	RabbitmqVhost    string
-	AppHost          string
-	BotToken         string
-	channels         []ChannelAction
+	ChannelNewLead    string
+	RabbitmqHost      string
+	RabbitmqPort      string
+	RabbitmqUser      string
+	RabbitmqPassword  string
+	RabbitmqVhost     string
+	RabbitmqQueueName string
+	AppHost           string
+	BotToken          string
+	channels          []ChannelAction
 }
 
 // Clone shallow copies the configuration. Your implementation may require a deep copy if

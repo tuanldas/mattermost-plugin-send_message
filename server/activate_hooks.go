@@ -21,9 +21,9 @@ func (p *Plugin) OnActivate() error {
 	channels = p.configuration.channels
 	botToken = p.configuration.BotToken
 	appHost = p.configuration.AppHost
-	log.Print(p.configuration.ChannelNewLead)
+
 	p.connectRabbitMQ()
-	p.consumeMessages("test", processMessage)
+	p.consumeMessages(p.configuration.RabbitmqQueueName, processMessage)
 	return nil
 }
 
